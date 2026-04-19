@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Delete My Data — AusUni Guide</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#F8FAFC;color:#1E293B;line-height:1.7}
+.hero{background:linear-gradient(135deg,#1E3A8A,#2563EB);padding:56px 24px 44px;text-align:center;color:#fff}
+.hero-icon{font-size:52px;margin-bottom:12px}
+.hero h1{font-size:34px;font-weight:900;letter-spacing:-0.5px;margin-bottom:8px}
+.hero p{font-size:16px;opacity:0.85;max-width:520px;margin:0 auto}
+.badge{display:inline-block;background:rgba(255,255,255,0.18);padding:5px 16px;border-radius:20px;font-size:13px;font-weight:600;margin-top:14px}
+.container{max-width:720px;margin:0 auto;padding:44px 24px 80px}
+.card{background:#fff;border-radius:16px;padding:32px;margin-bottom:20px;border:1px solid #E2E8F0;box-shadow:0 1px 4px rgba(0,0,0,0.04)}
+.card-header{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:16px;border-bottom:2px solid #F1F5F9}
+.card-icon{font-size:26px;flex-shrink:0}
+.card h2{font-size:19px;font-weight:800;color:#1E293B}
+.card p{color:#374151;font-size:15px;margin-bottom:12px}
+.card p:last-child{margin-bottom:0}
+.card ul{padding-left:20px;color:#374151;font-size:15px}
+.card li{margin-bottom:8px}
+.info{background:#EFF6FF;border-left:4px solid #3B82F6;padding:14px 18px;border-radius:0 10px 10px 0;margin:14px 0;color:#1E40AF;font-size:14px}
+.warning{background:#FEF2F2;border-left:4px solid #EF4444;padding:14px 18px;border-radius:0 10px 10px 0;margin:14px 0;color:#991B1B;font-size:14px}
+  .success{background:#F0FDF4;border-left:4px solid #10B981;padding:14px 18px;border-radius:0 10px 10px 0;margin:14px 0;color:#065F46;font-size:14px}
+.steps{counter-reset:steps;list-style:none;padding:0}
+.steps li{counter-increment:steps;display:flex;gap:14px;align-items:flex-start;margin-bottom:16px}
+.steps li::before{content:counter(steps);background:#2563EB;color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;margin-top:2px}
+.steps li p{font-size:15px;color:#374151;margin:0}
+.steps li strong{color:#1E293B}
+  .form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:14px;font-weight:600;color:#374151;margin-bottom:6px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 14px;border:1.5px solid #E2E8F0;border-radius:10px;font-size:15px;color:#1E293B;background:#F8FAFC;font-family:inherit;transition:border-color 0.2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:#2563EB;background:#fff}
+.form-group textarea{resize:vertical;min-height:90px}
+.delete-btn{width:100%;background:linear-gradient(135deg,#DC2626,#B91C1C);color:#fff;border:none;border-radius:12px;padding:15px;font-size:16px;font-weight:700;cursor:pointer;margin-top:8px;transition:opacity 0.2s}
+  .delete-btn:hover{opacity:0.9}
+.delete-btn:active{transform:scale(0.99)}
+.alt-method{background:#FFF7ED;border:1px solid #FED7AA;border-radius:12px;padding:22px;margin-top:8px}
+  .alt-method h3{font-size:15px;font-weight:700;color:#9A3412;margin-bottom:10px}
+.alt-method p{font-size:14px;color:#7C2D12;margin-bottom:6px}
+.alt-method a{color:#2563EB;font-weight:600}
+.data-table{width:100%;border-collapse:collapse;font-size:14px;margin-top:12px}
+.data-table th{background:#F1F5F9;padding:10px 14px;text-align:left;font-weight:700;color:#64748B;font-size:12px;text-transform:uppercase;letter-spacing:0.5px}
+  .data-table td{padding:10px 14px;border-bottom:1px solid #F1F5F9;color:#374151}
+.data-table tr:last-child td{border-bottom:none}
+  .tag-deleted{background:#FEE2E2;color:#991B1B;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px}
+  .tag-kept{background:#FEF3C7;color:#92400E;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px}
+  .tag-third{background:#EDE9FE;color:#5B21B6;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px}
+  .confirm-box{display:flex;align-items:flex-start;gap:10px;background:#FEF2F2;border:1.5px solid #FECACA;border-radius:10px;padding:14px;margin:16px 0}
+  .confirm-box input[type=checkbox]{margin-top:3px;width:16px;height:16px;flex-shrink:0;cursor:pointer;accent-color:#DC2626}
+  .confirm-box label{font-size:14px;color:#7F1D1D;cursor:pointer}
+  .success-msg{display:none;background:#F0FDF4;border:1.5px solid #86EFAC;border-radius:12px;padding:24px;text-align:center;margin-top:16px}
+.success-msg .tick{font-size:36px;margin-bottom:8px}
+.success-msg h3{font-size:17px;font-weight:700;color:#166534;margin-bottom:6px}
+.success-msg p{font-size:14px;color:#15803D}
+.footer{text-align:center;padding:28px 24px;color:#94A3B8;font-size:13px;border-top:1px solid #E2E8F0;margin-top:32px}
+.footer strong{color:#64748B}
+@media(max-width:640px){.hero h1{font-size:24px}.card{padding:20px}.container{padding:24px 14px 60px}}
+</style>
+  </head>
+  <body>
+
+  <div class="hero">
+    <div class="hero-icon">🗑️</div>
+    <h1>Delete My Data</h1>
+  <p>AusUni Guide — Submit a request to permanently delete your account and all associated data</p>
+    <span class="badge">Response within 30 days · GDPR &amp; Australian Privacy Act compliant</span>
+</div>
+
+<div class="container">
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-icon">ℹ️</span>
+      <h2>Before You Request Deletion</h2>
+    </div>
+    <p>You can request deletion of your AusUni Guide account and personal data at any time. Please read the following before submitting:</p>
+      <div class="warning">⚠️ <strong>This action is permanent and cannot be undone.</strong> Once your data is deleted, your checklist progress, preferences, and account will be permanently removed and cannot be recovered.</div>
+      <div class="info">💡 If you have an active premium subscription, please cancel it first through Google Play before requesting data deletion. Data deletion does not automatically cancel your subscription or issue a refund.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-icon">📋</span>
+        <h2>What Gets Deleted</h2>
+    </div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Data Type</th>
+          <th>Action</th>
+          <th>Timeframe</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr><td>Your account &amp; email address</td><td><span class="tag-deleted">Permanently deleted</span></td><td>Within 30 days</td></tr>
+          <tr><td>Checklist progress &amp; preferences</td><td><span class="tag-deleted">Permanently deleted</span></td><td>Within 30 days</td></tr>
+          <tr><td>City &amp; accommodation preferences</td><td><span class="tag-deleted">Permanently deleted</span></td><td>Within 30 days</td></tr>
+          <tr><td>ARIA conversation history</td><td><span class="tag-deleted">Permanently deleted</span></td><td>Immediate (not stored)</td></tr>
+          <tr><td>Purchase &amp; subscription records</td><td><span class="tag-kept">Kept 7 years (legal requirement)</span></td><td>Financial records only</td></tr>
+        <tr><td>Anonymised analytics</td><td><span class="tag-kept">Retained (cannot identify you)</span></td><td>Non-personal aggregate data</td></tr>
+        <tr><td>Google Play purchase history</td><td><span class="tag-third">Managed by Google</span></td><td>See Google's policy</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-icon">📝</span>
+        <h2>Submit Deletion Request</h2>
+    </div>
+    <div class="form-group">
+      <label for="email">Email address used to register *</label>
+      <input type="email" id="email" placeholder="your@email.com" required/>
+      </div>
+      <div class="form-group">
+        <label for="reason">Reason for deletion (optional)</label>
+        <select id="reason">
+          <option value="">Select a reason...</option>
+          <option>I no longer use the app</option>
+          <option>Privacy concerns</option>
+          <option>Switching to a different app</option>
+        <option>I found what I needed</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+        <label for="notes">Additional notes (optional)</label>
+        <textarea id="notes" placeholder="Any additional information to help us process your request..."></textarea>
+      </div>
+      <div class="confirm-box">
+        <input type="checkbox" id="confirm" onchange="toggleBtn()"/>
+        <label for="confirm">I understand this action is <strong>permanent and irreversible</strong>. I confirm I want to permanently delete my AusUni Guide account and all associated personal data.</label>
+    </div>
+    <button class="delete-btn" id="deleteBtn" disabled onclick="submitRequest()">🗑️ Submit Deletion Request</button>
+    <div class="success-msg" id="successMsg">
+      <div class="tick">✅</div>
+      <h3>Request Received</h3>
+        <p>Your data deletion request has been submitted. We will process it within 30 days and send a confirmation to your email address.</p>
+      <p style="margin-top:8px;font-size:13px;color:#166534">Reference: <strong id="refCode"></strong></p>
+    </div>
+  </div>
+
+  <div class="alt-method">
+      <h3>📧 Alternative — Email Us Directly</h3>
+    <p>If you prefer, you can also request deletion by emailing us directly via GitHub:</p>
+      <p>👉 Open an issue at: <a href="https://github.com/mustansiryaqub/ausuni-guide/issues/new?title=Data+Deletion+Request&body=Please+delete+my+account+and+all+associated+data.%0A%0AEmail+address+registered:%0AReason+(optional):" target="_blank">github.com/mustansiryaqub/ausuni-guide/issues</a></p>
+      <p>Title your issue: <strong>"Data Deletion Request"</strong> and include your registered email address. We will respond within 30 days.</p>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <div class="card-header">
+        <span class="card-icon">⏱️</span>
+        <h2>What Happens Next</h2>
+    </div>
+    <ul class="steps">
+      <li><p><strong>Request received</strong> — We log your deletion request and send you a confirmation email within 24 hours.</p></li>
+        <li><p><strong>Identity verified</strong> — We may ask you to verify your identity to protect against unauthorised deletion requests.</p></li>
+        <li><p><strong>Data deleted</strong> — All your personal data is permanently removed from our systems (Supabase database) within 30 days.</p></li>
+      <li><p><strong>Confirmation sent</strong> — We send you a final confirmation email once deletion is complete.</p></li>
+        <li><p><strong>Subscription cancelled</strong> — Remember to also cancel your Google Play subscription separately if applicable.</p></li>
+      </ul>
+      <div class="success">✅ We are committed to processing all deletion requests promptly and in full compliance with the Australian Privacy Act 1988 and GDPR where applicable.</div>
+  </div>
+
+  <div class="card">
+      <div class="card-header">
+        <span class="card-icon">❓</span>
+        <h2>Frequently Asked Questions</h2>
+    </div>
+    <p><strong>Will deletion cancel my premium subscription?</strong><br/>No. You must cancel your subscription separately through Google Play Settings → Subscriptions. Data deletion only removes your personal data from our servers.</p>
+    <p style="margin-top:14px"><strong>Can I recover my data after deletion?</strong><br/>No. Once deleted, your data cannot be recovered. We recommend exporting or noting any information you wish to keep before submitting a request.</p>
+    <p style="margin-top:14px"><strong>How long does it take?</strong><br/>We process all deletion requests within 30 days. In most cases it is completed within 7 days. You will receive an email confirmation when complete.</p>
+    <p style="margin-top:14px"><strong>What about ARIA conversation history?</strong><br/>ARIA conversations are not stored on our servers beyond your active session. There is no persistent conversation history to delete.</p>
+    <p style="margin-top:14px"><strong>Can I create a new account after deleting?</strong><br/>Yes. You may create a new AusUni Guide account at any time after your deletion is processed.</p>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p><strong>AusUni Guide</strong> · Data Deletion · <a href="privacy-policy.html" style="color:#2563EB">Privacy Policy</a></p>
+  <p style="margin-top:6px">© 2026 Mustansir Yaqub · Melbourne, Australia · <a href="https://github.com/mustansiryaqub/ausuni-guide" style="color:#2563EB">GitHub</a></p>
+</div>
+
+<script>
+function toggleBtn(){
+  var cb=document.getElementById('confirm');
+  var btn=document.getElementById('deleteBtn');
+  btn.disabled=!cb.checked;
+  btn.style.opacity=cb.checked?'1':'0.5';
+  btn.style.cursor=cb.checked?'pointer':'not-allowed';
+}
+function submitRequest(){
+    var email=document.getElementById('email').value.trim();
+  if(!email){alert('Please enter your registered email address.');return;}
+  var ref='AUG-'+Date.now().toString(36).toUpperCase();
+  document.getElementById('refCode').textContent=ref;
+  document.getElementById('successMsg').style.display='block';
+  document.getElementById('deleteBtn').style.display='none';
+  document.getElementById('email').disabled=true;
+  document.getElementById('reason').disabled=true;
+  document.getElementById('notes').disabled=true;
+  document.getElementById('confirm').disabled=true;
+  document.getElementById('successMsg').scrollIntoView({behavior:'smooth'});
+}
+window.onload=function(){
+  document.getElementById('deleteBtn').style.opacity='0.5';
+  document.getElementById('deleteBtn').style.cursor='not-allowed';
+}
+</script>
+  </body>
+  </html>
